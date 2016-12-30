@@ -8,7 +8,7 @@ function addToCache(episode) {
   if (localCache.length >= NUM_EPISODES_TO_CACHE) localCache.pop();
   localCache.unshift(episode);
 
-  fs.writeFile('./cache.json', JSON.stringify(localCache), (err) => {
+  fs.writeFile(`${__dirname}/cache.json`, JSON.stringify(localCache), (err) => {
     if (err) throw err;
     console.log('Cache saved.');
   });

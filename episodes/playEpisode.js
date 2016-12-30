@@ -1,18 +1,16 @@
 const childProcess = require('child_process');
 
 function playEpisode(episodePath) {
-  const vlcFlags = '-f --video-on-top --no-video-title-show --no-play-and-stop --play-and-exit';
-  const vlc = process.env.VLC_COMMAND;
-  const command = `${vlc} ${episodePath} ${vlcFlags}`;
-
-  console.log(`Playing ${episodePath}`);
+  const playbackFlags = process.env.PLAYBACK_FLAGS;
+  const playbackApp = process.env.PLAYBACK_APP_PATH;
+  // TODO - Allow playlist
+  const command = `${playbackApp} ${episodePath} ${playbackFlags}`;
 
   childProcess.exec(command, (error, stdout, stderr) => {
 
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
-
-    if (error) console.log(error);
+    if (stdout) console.log(`stdout: ${stdout}`);
+    if (stderr) console.log(`stderr: ${stderr}`);
+    if (error) console.log(`ERROR: ${error}`);
 
     // Shut 'er down
     childProcess.exec('pmset sleepnow').unref();
