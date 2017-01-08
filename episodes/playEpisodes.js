@@ -1,10 +1,9 @@
 const childProcess = require('child_process');
 
-function playEpisode(episodePath) {
+function playEpisodes(playlist = []) {
   const playbackFlags = process.env.PLAYBACK_FLAGS;
   const playbackApp = process.env.PLAYBACK_APP_PATH;
-  // TODO - Allow playlist
-  const command = `${playbackApp} ${episodePath} ${playbackFlags}`;
+  const command = `${playbackApp} ${playlist.join(' ')} ${playbackFlags}`;
 
   childProcess.exec(command, (error, stdout, stderr) => {
 
@@ -17,4 +16,4 @@ function playEpisode(episodePath) {
   });
 }
 
-module.exports = playEpisode;
+module.exports = playEpisodes;

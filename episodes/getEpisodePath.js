@@ -1,10 +1,17 @@
 const addToCache = require('../cache/addToCache');
-const cache = require('../cache/cache');
 const Episode = require('./Episode');
 const fs = require('fs');
 const numEpisodes = require('../utils/numEpisodes');
 const numSeasons = require('../utils/numSeasons');
+const { cache, containsEpisode } = require('../cache');
+const isValidEpisode = require('./isValidEpisode');
 
+/**
+ * getEpisodePath - description
+ *
+ * @param  {type} callback description
+ * @return {type}          description
+ */
 function getEpisodePath(callback) {
 
   let episodePath = process.env.SIMPSONS_PATH;
@@ -22,21 +29,15 @@ function getEpisodePath(callback) {
 
       if (err) throw new Error(err);
 
-      // const episodeIndex = Math.ceil(Math.random() * (numEpisodes(files) - 0) + 0);
       const episodeIndex = Math.ceil(Math.random() * Number(numEpisodes(files)));
       const episode = files[episodeIndex];
       const episodeObj = new Episode({ season, episode, episodeIndex });
 
       episodePath += `/${episode}`;
 
-      const isInCache = cache.reduce((prevVal, curVal) => {
-        if (prevVal === true) return true;
-        return (curVal.season === episodeObj.season && curVal.episodeIndex === episodeObj.episodeIndex);
-      }, episodeObj);
-
-      // This conditional is intentionally explicit
-      if (isInCache !== true) {
+      if (isValidEpisode(episodeObj, cache)) {
         callback(episodePath);
+        // TODO - Maybe we shouldn't cache the episode until its done playing.
         addToCache(episodeObj);
       } else {
         // Found an episode in cache, try again

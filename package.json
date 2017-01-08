@@ -1,0 +1,28 @@
+{
+  "name": "watch-simpsons",
+  "version": "1.0.0",
+  "description": "A lazy way to watch Simpsons episodes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-register **/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ncob/watch-simpsons.git"
+  },
+  "author": "Nate Bisbee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ncob/watch-simpsons/issues"
+  },
+  "homepage": "https://github.com/ncob/watch-simpsons#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "yargs": "^6.6.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.1.6",
+    "babel-register": "^6.18.0"
+  }
+}
