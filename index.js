@@ -4,5 +4,5 @@ const playEpisode = require('./episodes/playEpisode');
 const escapeNonWords = require('./utils/escapeNonWords');
 
 (function main() {
-  getEpisodePath(episodePath => playEpisode(escapeNonWords(episodePath)))
+  getEpisodePath(episodePath => playEpisode(escapeNonWords(episodePath)));
 }());
