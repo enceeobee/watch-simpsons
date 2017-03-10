@@ -1,7 +1,7 @@
 const seasonRegex = /Season [0-9]+/;
 
-function numSeasons(files) {
-  return files.filter((file) => seasonRegex.test(file)).length;
+function numSeasons(seasonDirs = []) {
+  return seasonDirs.filter(seasonDir => seasonRegex.test(seasonDir)).length;
 }
 
 module.exports = numSeasons;
