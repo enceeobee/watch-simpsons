@@ -1,15 +1,26 @@
 const childProcess = require('child_process');
+const debug = require('debug')('watch-simpsons:playEpisodes');
+const cache = require('../cache');
 
-function playEpisodes(playlist = []) {
+/**
+ * playEpisodes - Plays all Episodes in playlist
+ *
+ * @param  {type} playlist = [] Array of Episodes
+ * @return {type}               description
+ */
+function playEpisodes(episodes = []) {
   const playbackFlags = process.env.PLAYBACK_FLAGS;
   const playbackApp = process.env.PLAYBACK_APP_PATH;
-  const command = `${playbackApp} ${playlist.join(' ')} ${playbackFlags}`;
+  const playlist = episodes.map(episode => `"${episode.path}"`).join(' ');
+  const command = `${playbackApp} ${playlist} ${playbackFlags}`;
 
   childProcess.exec(command, (error, stdout, stderr) => {
+    if (stdout) debug(`stdout: ${stdout}`);
+    if (stderr) debug(`stderr: ${stderr}`);
+    if (error) debug(`ERROR: ${error}`);
 
-    if (stdout) console.log(`stdout: ${stdout}`);
-    if (stderr) console.log(`stderr: ${stderr}`);
-    if (error) console.log(`ERROR: ${error}`);
+    // Add to episodes to cache
+    episodes.map(episode => cache.addToCache(episode));
 
     // Shut 'er down
     childProcess.exec('pmset sleepnow').unref();

@@ -1,3 +1,4 @@
+const { isSameEpisode } = require('../utils');
 
 /**
  * containsEpisode - Determines if an episode is in the cache
@@ -7,11 +8,7 @@
  * @return {Boolean}             If the cache contains this episode
  */
 function containsEpisode(episode = {}, cache = []) {
-
-  return cache.reduce((prevVal, curVal) => {
-    if (prevVal === true) return true;
-    return (curVal.season === episode.season && curVal.episodeIndex === episode.episodeIndex);
-  }, false);
+  return cache.some(cachedEpisode => isSameEpisode(cachedEpisode, episode));
 }
 
 module.exports = containsEpisode;

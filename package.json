@@ -4,6 +4,8 @@
   "description": "A lazy way to watch Simpsons episodes.",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
+    "start-with-debug": "DEBUG=my-invaluable* node index",
     "test": "mocha --compilers js:babel-register **/*.spec.js"
   },
   "repository": {
@@ -18,6 +20,7 @@
   "homepage": "https://github.com/ncob/watch-simpsons#readme",
   "dependencies": {
     "chai": "^3.5.0",
+    "debug": "^2.6.1",
     "mocha": "^3.2.0",
     "yargs": "^6.6.0"
   },

@@ -1,0 +1,42 @@
+const { expect } = require('chai');
+const containsDupes = require('./containsDupes');
+
+let actual;
+let expected;
+let playlist;
+
+describe('containsDupes', () => {
+  beforeEach(() => {
+    actual = null;
+    playlist = null;
+  });
+
+  describe('should return false', () => {
+    beforeEach(() => {
+      expected = false;
+    });
+
+    it('when all values are unique', () => {
+      playlist = [{ a: 'a' }, { b: 'b' }, { c: 'c' }];
+      actual = containsDupes(playlist);
+      expect(actual).to.equal(expected);
+    });
+
+    it('when no args are passed', () => {
+      actual = containsDupes();
+      expect(actual).to.equal(expected);
+    });
+  });
+
+  describe('should return true', () => {
+    beforeEach(() => {
+      expected = true;
+    });
+
+    it('when a duplicate value exists', () => {
+      playlist = [{ a: 'a' }, { b: 'b' }, { c: 'c' }, { a: 'a' }];
+      actual = containsDupes(playlist);
+      expect(actual).to.equal(expected);
+    });
+  });
+});
