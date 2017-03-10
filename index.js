@@ -2,9 +2,9 @@
 // nodemon and babel halp: https://github.com/babel/example-node-server
 const playEpisodes = require('./episodes/playEpisodes');
 const getPlaylist = require('./playlist/getPlaylist');
+const { argv } = require('yargs');
 
 (function main() {
-  // TODO - Use input
-  getPlaylist()
+  getPlaylist(argv.s || argv.size || 1)
     .then(playlist => playEpisodes(playlist));
 }());
