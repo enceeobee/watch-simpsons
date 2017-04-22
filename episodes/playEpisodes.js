@@ -5,8 +5,7 @@ const cache = require('../cache');
 /**
  * playEpisodes - Plays all Episodes in playlist
  *
- * @param  {type} playlist = [] Array of Episodes
- * @return {type}               description
+ * @param  {array} playlist = [] Array of Episodes
  */
 function playEpisodes(episodes = []) {
   const playbackFlags = process.env.PLAYBACK_FLAGS;

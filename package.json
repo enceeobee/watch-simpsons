@@ -1,11 +1,11 @@
 {
   "name": "watch-simpsons",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A lazy way to watch Simpsons episodes.",
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "start-with-debug": "DEBUG=my-invaluable* node index",
+    "start-with-debug": "DEBUG=* npm start",
     "test": "mocha --compilers js:babel-register **/*.spec.js"
   },
   "repository": {
