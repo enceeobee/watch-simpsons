@@ -4,8 +4,8 @@
  * @param  {Array} files = [] Array of filenames
  * @return {number}           Amount of valid episodes
  */
-function numEpisodes(filenames = []) {
-  return filenames.filter(filename => /\.avi$/.test(filename)).length;
+function numEpisodes (filenames = []) {
+  return filenames.filter(filename => /\.avi$/.test(filename)).length
 }
 
-module.exports = numEpisodes;
+module.exports = numEpisodes
