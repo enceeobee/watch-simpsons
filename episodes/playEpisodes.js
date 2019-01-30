@@ -1,6 +1,6 @@
 const childProcess = require('child_process')
 const debug = require('debug')('watch-simpsons:playEpisodes')
-const cache = require('../cache')
+const { addAllToCache, cache } = require('../cache')
 
 /**
  * playEpisodes - Plays all Episodes in playlist
@@ -18,11 +18,9 @@ function playEpisodes (episodes = []) {
     if (stderr) debug(`stderr: ${stderr}`)
     if (error) debug(`ERROR: ${error}`)
 
-    // Add to episodes to cache
-    episodes.map(episode => cache.addToCache(episode))
-
-    // Shut 'er down
-    childProcess.exec('pmset sleepnow').unref()
+    addAllToCache(episodes, cache)
+      .then(localCache => childProcess.exec('pmset sleepnow').unref())
+      .catch(e => { throw e })
   })
 }
 
