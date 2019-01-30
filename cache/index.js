@@ -1,9 +1,9 @@
-const addToCache = require('./addToCache')
+const addAllToCache = require('./addAllToCache')
 const cache = require('./cache')
 const containsEpisode = require('./containsEpisode')
 
 module.exports = {
-  addToCache,
+  addAllToCache,
   cache,
   containsEpisode
 }
