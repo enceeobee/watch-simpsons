@@ -1,4 +1,3 @@
-const { expect } = require('chai')
 const isSameEpisode = require('./isSameEpisode')
 
 let actual
@@ -21,12 +20,12 @@ describe('isSameEpisode', () => {
     it('When both args are equal *by value*', () => {
       episode2 = Object.assign({}, episode1)
       actual = isSameEpisode(episode1, episode2)
-      expect(actual).to.equal(expected)
+      expect(actual).toEqual(expected)
     })
 
     it('when no args are passed', () => {
       actual = isSameEpisode()
-      expect(actual).to.equal(expected)
+      expect(actual).toEqual(expected)
     })
   })
 
@@ -38,20 +37,20 @@ describe('isSameEpisode', () => {
     it('when the episode1 has different values', () => {
       episode2.a = 'INVALID'
       actual = isSameEpisode(episode1, episode2)
-      expect(actual).to.equal(expected)
+      expect(actual).toEqual(expected)
     })
 
     it('when the episode1 has additional properties', () => {
       episode2.another = 'property'
       actual = isSameEpisode(episode1, episode2)
-      expect(actual).to.equal(expected)
+      expect(actual).toEqual(expected)
     })
 
     it('when the episode1 has fewer properties', () => {
       delete episode2.nate
       delete episode2.a
       actual = isSameEpisode(episode1, episode2)
-      expect(actual).to.equal(expected)
+      expect(actual).toEqual(expected)
     })
   })
 })
