@@ -15,7 +15,10 @@ function fetchEpisode (path, cache, callback) {
   let episodePath = path
 
   fs.readdir(episodePath, (err, files) => {
-    if (err) callback(err)
+    if (err) {
+      callback(err)
+      return
+    }
 
     let season = Math.ceil(Math.random() * numSeasons(files))
     if (season < 10) season = `0${season}`

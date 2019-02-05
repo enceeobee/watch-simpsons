@@ -1,4 +1,3 @@
-const { expect } = require('chai')
 const getPlaylist = require('./getPlaylist')
 const getNumDupes = require('../playlist/getNumDupes')
 
@@ -19,7 +18,7 @@ describe('getPlaylist', () => {
     getPlaylist(size).then((episodes) => {
       actual = episodes.length
       expected = size
-      expect(actual).to.equal(expected)
+      expect(actual).toBe(expected)
     }).then(done, done)
   })
 
@@ -27,7 +26,7 @@ describe('getPlaylist', () => {
     getPlaylist().then((episodes) => {
       actual = episodes.length
       expected = size
-      expect(actual).to.equal(expected)
+      expect(actual).toBe(expected)
     }).then(done, done)
   })
 
@@ -35,7 +34,7 @@ describe('getPlaylist', () => {
     getPlaylist(2).then((episodes) => {
       expected = true
       actual = getNumDupes(episodes)
-      expect(actual === 0).to.equal(expected)
+      expect(actual === 0).toBe(expected)
     }).then(done, done)
   })
 })

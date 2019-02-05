@@ -1,6 +1,5 @@
 const hasValidExtension = require('./hasValidExtension')
 const Episode = require('./Episode')
-const expect = require('chai').expect
 
 const validExtensions = ['mpg', 'avi']
 const episode = new Episode({
@@ -17,7 +16,7 @@ describe('/episodes/hasValidExtension', () => {
     beforeEach(() => (expected = true))
     it('when the file\'s extension is contained in `validExtensions`', () => {
       actual = hasValidExtension(episode, validExtensions)
-      expect(actual).to.equal(expected)
+      expect(actual).toBe(expected)
     })
   })
 
@@ -27,19 +26,19 @@ describe('/episodes/hasValidExtension', () => {
     it('when the file\'s extension is not contained in `validExtensions`', () => {
       episode.episode = 'File with.bad.extension'
       actual = hasValidExtension(episode, validExtensions)
-      expect(actual).to.equal(expected)
+      expect(actual).toBe(expected)
     })
 
     it('when the file doesn\'t have an extension', () => {
       episode.episode = 'File without extension'
       actual = hasValidExtension(episode, validExtensions)
-      expect(actual).to.equal(expected)
+      expect(actual).toBe(expected)
     })
 
     it('when the file doesn\'t have a filename', () => {
       delete episode.episode
       actual = hasValidExtension(episode, validExtensions)
-      expect(actual).to.equal(expected)
+      expect(actual).toBe(expected)
     })
   })
 })
