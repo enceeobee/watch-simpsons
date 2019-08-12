@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node index",
     "start-with-debug": "DEBUG=* npm start",
+    "server": "node server/index.js",
+    "server:dev": "nodemon server/index.js",
     "test": "jest"
   },
   "repository": {
@@ -20,10 +22,13 @@
   "homepage": "https://github.com/ncob/watch-simpsons#readme",
   "dependencies": {
     "debug": "^2.6.1",
+    "express": "^4.17.1",
+    "helmet": "^3.20.0",
     "yargs": "^6.6.0"
   },
   "devDependencies": {
     "jest": "^24.0.0",
+    "nodemon": "^1.19.1",
     "standard": "^11.0.1"
   },
   "standard": {
